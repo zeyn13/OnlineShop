@@ -33,7 +33,8 @@
                 <label asp-for="Image"></label>
             </div>
             <div class="col-5">
-                <input asp-for="Image" class="form-control" type="file" />
+                <select asp-for="ProductTypeId" asp-items="ViewBag.productTypeId" class="form-control"></select>
+                @*<input asp-for="Image" class="form-control" type="file" />*@
             </div>
             <span asp-validation-for="Image" class="text-danger"></span>
         </div>

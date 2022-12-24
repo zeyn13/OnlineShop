@@ -5,8 +5,6 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using OnlineShop.Data;
 using OnlineShop.Models;
-using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,12 +12,13 @@ using System.Threading.Tasks;
 namespace OnlineShop.Areas.Admin.Controllers
 {
     [Area("Admin")]
-
     public class ProductController : Controller
     {
         private ApplicationDbContext _db;
+        [System.Obsolete]
         private IHostingEnvironment _he;
 
+        [System.Obsolete]
         public ProductController(ApplicationDbContext db, IHostingEnvironment he)
         {
             _db = db;
@@ -54,6 +53,7 @@ namespace OnlineShop.Areas.Admin.Controllers
 
         //Post Create method
         [HttpPost]
+        [System.Obsolete]
         public async Task<IActionResult> Create(Products product, IFormFile image)
         {
             if (ModelState.IsValid)
@@ -108,6 +108,7 @@ namespace OnlineShop.Areas.Admin.Controllers
 
         //POST Edit Action Method
         [HttpPost]
+        [System.Obsolete]
         public async Task<IActionResult> Edit(Products products, IFormFile image)
         {
             if (ModelState.IsValid)
@@ -149,7 +150,6 @@ namespace OnlineShop.Areas.Admin.Controllers
             return View(product);
         }
 
-
         //GET Delete Action Method
 
         public ActionResult Delete(int? id)
@@ -189,8 +189,5 @@ namespace OnlineShop.Areas.Admin.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-
-
     }
 }
-
