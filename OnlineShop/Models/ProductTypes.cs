@@ -12,5 +12,7 @@ namespace OnlineShop.Models
         [Required]
         [Display(Name = "Product Type")]
         public string ProductType { get; set; }
+
     }
 }
+
