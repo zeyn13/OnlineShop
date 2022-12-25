@@ -11,7 +11,6 @@ using System.Threading.Tasks;
 namespace OnlineShop.Areas.Customer.Controllers
 {
     [Area("Admin")]
-    [Authorize(Roles = "Super user")]
     public class ProductTypesController : Controller
     {
         private ApplicationDbContext _db;
