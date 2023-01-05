@@ -28,6 +28,9 @@
         {
             <tr>
                 <td>@item.Name</td>
+                <td>
+                    <partial name="_ButtonPartial" model="@item.Id" />
+                </td>
             </tr>
         }
     </table>
