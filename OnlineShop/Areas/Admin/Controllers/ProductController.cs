@@ -108,7 +108,6 @@ namespace OnlineShop.Areas.Admin.Controllers
 
         //POST Edit Action Method
         [HttpPost]
-        [System.Obsolete]
         public async Task<IActionResult> Edit(Products products, IFormFile image)
         {
             if (ModelState.IsValid)
