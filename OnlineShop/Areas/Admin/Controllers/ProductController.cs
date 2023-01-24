@@ -76,7 +76,7 @@ namespace OnlineShop.Areas.Admin.Controllers
 
                 if (image == null)
                 {
-                    product.Image = "Images/noimage.PNG";
+                    product.Image = "Images/noimage.png";
                 }
                 _db.Products.Add(product);
                 await _db.SaveChangesAsync();
@@ -121,7 +121,7 @@ namespace OnlineShop.Areas.Admin.Controllers
 
                 if (image == null)
                 {
-                    products.Image = "Images/noimage.PNG";
+                    products.Image = "Images/noimage.png";
                 }
                 _db.Products.Update(products);
                 await _db.SaveChangesAsync();
