@@ -1,13 +1,15 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using OnlineShop.Data;
 using OnlineShop.Models;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace OnlineShop.Areas.Admin.Controllers
 {
@@ -15,10 +17,10 @@ namespace OnlineShop.Areas.Admin.Controllers
     public class ProductController : Controller
     {
         private ApplicationDbContext _db;
-        [System.Obsolete]
+        [Obsolete]
         private IHostingEnvironment _he;
 
-        [System.Obsolete]
+        [Obsolete]
         public ProductController(ApplicationDbContext db, IHostingEnvironment he)
         {
             _db = db;
@@ -46,14 +48,14 @@ namespace OnlineShop.Areas.Admin.Controllers
         public IActionResult Create()
         {
             ViewData["productTypeId"] = new SelectList(_db.ProductTypes.ToList(), "Id", "ProductType");
-            ViewData["TagId"] = new SelectList(_db.SpecialTag.ToList(), "Id", "Name");
+            ViewData["TagId"] = new SelectList(_db.SpecialTags.ToList(), "Id", "Name");
             return View();
         }
 
 
         //Post Create method
         [HttpPost]
-        [System.Obsolete]
+        [Obsolete]
         public async Task<IActionResult> Create(Products product, IFormFile image)
         {
             if (ModelState.IsValid)
@@ -63,7 +65,7 @@ namespace OnlineShop.Areas.Admin.Controllers
                 {
                     ViewBag.message = "This product is already exist";
                     ViewData["productTypeId"] = new SelectList(_db.ProductTypes.ToList(), "Id", "ProductType");
-                    ViewData["TagId"] = new SelectList(_db.SpecialTag.ToList(), "Id", "Name");
+                    ViewData["TagId"] = new SelectList(_db.SpecialTags.ToList(), "Id", "Name");
                     return View(product);
                 }
 
@@ -76,7 +78,7 @@ namespace OnlineShop.Areas.Admin.Controllers
 
                 if (image == null)
                 {
-                    product.Image = "Images/noimage.png";
+                    product.Image = "Images/noimage.PNG";
                 }
                 _db.Products.Add(product);
                 await _db.SaveChangesAsync();
@@ -91,7 +93,7 @@ namespace OnlineShop.Areas.Admin.Controllers
         public ActionResult Edit(int? id)
         {
             ViewData["productTypeId"] = new SelectList(_db.ProductTypes.ToList(), "Id", "ProductType");
-            ViewData["TagId"] = new SelectList(_db.SpecialTag.ToList(), "Id", "Name");
+            ViewData["TagId"] = new SelectList(_db.SpecialTags.ToList(), "Id", "Name");
             if (id == null)
             {
                 return NotFound();
@@ -108,7 +110,7 @@ namespace OnlineShop.Areas.Admin.Controllers
 
         //POST Edit Action Method
         [HttpPost]
-        [System.Obsolete]
+        [Obsolete]
         public async Task<IActionResult> Edit(Products products, IFormFile image)
         {
             if (ModelState.IsValid)
@@ -122,7 +124,7 @@ namespace OnlineShop.Areas.Admin.Controllers
 
                 if (image == null)
                 {
-                    products.Image = "Images/noimage.png";
+                    products.Image = "Images/noimage.PNG";
                 }
                 _db.Products.Update(products);
                 await _db.SaveChangesAsync();

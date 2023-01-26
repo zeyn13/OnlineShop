@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
-using OnlineShop.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using OnlineShop.Models;
 
 namespace OnlineShop.Data
 {
@@ -15,8 +15,9 @@ namespace OnlineShop.Data
         }
 
         public DbSet<ProductTypes> ProductTypes { get; set; }
-        public DbSet<SpecialTag> SpecialTag { get; set; }
+        public DbSet<SpecialTag> SpecialTags { get; set; }
         public DbSet<Products> Products { get; set; }
-        public object SpecialTags { get; internal set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderDetails> OrderDetails { get; set; }
     }
 }

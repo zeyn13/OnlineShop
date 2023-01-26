@@ -22,7 +22,7 @@ namespace OnlineShop.Areas.Admin.Controllers
         //GET Index Action Method
         public IActionResult Index()
         {
-            return View(_db.SpecialTag.ToList());
+            return View(_db.SpecialTags.ToList());
         }
 
         //GET Create Action Method
@@ -40,7 +40,7 @@ namespace OnlineShop.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                _db.SpecialTag.Add(specialTag);
+                _db.SpecialTags.Add(specialTag);
                 await _db.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
@@ -57,7 +57,7 @@ namespace OnlineShop.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var specialTag = _db.SpecialTag.Find(id);
+            var specialTag = _db.SpecialTags.Find(id);
             if (specialTag == null)
             {
                 return NotFound();
@@ -90,7 +90,7 @@ namespace OnlineShop.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var specialTag = _db.SpecialTag.Find(id);
+            var specialTag = _db.SpecialTags.Find(id);
             if (specialTag == null)
             {
                 return NotFound();
@@ -117,7 +117,7 @@ namespace OnlineShop.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var specialTag = _db.SpecialTag.Find(id);
+            var specialTag = _db.SpecialTags.Find(id);
             if (specialTag == null)
             {
                 return NotFound();
@@ -141,7 +141,7 @@ namespace OnlineShop.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var specialTags = _db.SpecialTag.Find(id);
+            var specialTags = _db.SpecialTags.Find(id);
             if (specialTags == null)
             {
                 return NotFound();
