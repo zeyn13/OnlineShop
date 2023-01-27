@@ -15,7 +15,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using OnlineShop.Models;
 
-
 namespace OnlineShop
 {
     public class Startup
@@ -80,16 +79,14 @@ namespace OnlineShop
             app.UseSession();
             app.UseAuthentication();
 
-
-            app.UseMvc(routes => 
+            app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "areas",
                     template: "{area=Customer}/{controller=Home}/{action=Index}/{id?}"
-
                 );
             });
-
         }
     }
 }
+

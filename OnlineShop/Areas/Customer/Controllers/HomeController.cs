@@ -1,15 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
-using OnlineShop.Data;
-using OnlineShop.Models;
-using OnlineShop.Utility;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using OnlineShop.Data;
+using OnlineShop.Models;
+using OnlineShop.Utility;
+using X.PagedList;
 
 namespace OnlineShop.Controllers
 {
@@ -27,7 +27,7 @@ namespace OnlineShop.Controllers
 
         public IActionResult Index(int? page)
         {
-            return View(_db.Products.Include(c => c.ProductTypes).Include(c => c.SpecialTag).ToList());
+            return View(_db.Products.Include(c => c.ProductTypes).Include(c => c.SpecialTag).ToList().ToPagedList(page ?? 1, 9));
         }
 
         public IActionResult Privacy()
@@ -41,7 +41,7 @@ namespace OnlineShop.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        //GET product detail action method
+        //GET product detail acation method
 
         public ActionResult Detail(int? id)
         {
@@ -59,8 +59,7 @@ namespace OnlineShop.Controllers
             return View(product);
         }
 
-
-        //POST product detail action method
+        //POST product detail acation method
         [HttpPost]
         [ActionName("Detail")]
         public ActionResult ProductDetail(int? id)
@@ -86,8 +85,7 @@ namespace OnlineShop.Controllers
             HttpContext.Session.Set("products", products);
             return RedirectToAction(nameof(Index));
         }
-
-        //GET Remove action methdod
+        //GET Remove action methdo
         [ActionName("Remove")]
         public IActionResult RemoveToCart(int? id)
         {
@@ -120,6 +118,7 @@ namespace OnlineShop.Controllers
             }
             return RedirectToAction(nameof(Index));
         }
+
         //GET product Cart action method
 
         public IActionResult Cart()
@@ -131,6 +130,7 @@ namespace OnlineShop.Controllers
             }
             return View(products);
         }
+
     }
 }
 

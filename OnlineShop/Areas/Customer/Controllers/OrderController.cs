@@ -19,7 +19,7 @@ namespace OnlineShop.Areas.Customer.Controllers
             _db = db;
         }
 
-        //GET Checkout action method
+        //GET Checkout actioin method
 
         public IActionResult Checkout()
         {
@@ -59,4 +59,3 @@ namespace OnlineShop.Areas.Customer.Controllers
         }
     }
 }
-
