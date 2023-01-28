@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace OnlineShop.Models
 {
-    public class AplicationUser:IdentityUser
+    public class ApplicationUser:IdentityUser
     {
 
         public string FirsName { get; set; }
