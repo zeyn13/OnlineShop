@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-
 namespace OnlineShop.Data.Migrations
 {
     public partial class addednewfeildintousertable : Migration
@@ -40,5 +39,3 @@ namespace OnlineShop.Data.Migrations
         }
     }
 }
-
-

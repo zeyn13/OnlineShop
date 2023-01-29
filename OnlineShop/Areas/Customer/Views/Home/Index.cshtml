@@ -33,7 +33,7 @@
 </div>
 <div>
    
-    @Html.PagedListPager(Model,c=>Href("~/Customer/Home/Index?page="+c))
+    @Html.PagedListPager(Model,c=>Href("~/Customer/Home/Index?page="+c),X.PagedList.Web.Common.PagedListRenderOptions.MinimalWithItemCountText)
 
 
 </div>

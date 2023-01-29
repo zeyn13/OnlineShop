@@ -25,7 +25,7 @@ namespace OnlineShop.Areas.Customer.Controllers
             return View(_db.ApplicationUser.ToList());
         }
 
-        public async Task<IActionResult> Create()
+        public IActionResult Create()
         {
             return View();
         }
@@ -54,7 +54,7 @@ namespace OnlineShop.Areas.Customer.Controllers
 
 
 
-        public async Task<IActionResult> Edit(string id)
+        public IActionResult Edit(string id)
         {
             var user = _db.ApplicationUser.FirstOrDefault(c => c.Id == id);
             if (user == null)
@@ -84,7 +84,7 @@ namespace OnlineShop.Areas.Customer.Controllers
         }
 
 
-        public async Task<IActionResult> Details(string id)
+        public IActionResult Details(string id)
         {
             var user = _db.ApplicationUser.FirstOrDefault(c => c.Id == id);
             if (user == null)
@@ -94,7 +94,7 @@ namespace OnlineShop.Areas.Customer.Controllers
             return View(user);
         }
 
-        public async Task<IActionResult> Locout(string id)
+        public IActionResult Locout(string id)
         {
             if (id == null)
             {
@@ -109,7 +109,7 @@ namespace OnlineShop.Areas.Customer.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Locout(ApplicationUser user)
+        public IActionResult Locout(ApplicationUser user)
         {
             var userInfo = _db.ApplicationUser.FirstOrDefault(c => c.Id == user.Id);
             if (userInfo == null)
@@ -126,7 +126,7 @@ namespace OnlineShop.Areas.Customer.Controllers
             }
             return View(userInfo);
         }
-        public async Task<IActionResult> Active(string id)
+        public IActionResult Active(string id)
         {
             var user = _db.ApplicationUser.FirstOrDefault(c => c.Id == id);
             if (user == null)
@@ -137,7 +137,7 @@ namespace OnlineShop.Areas.Customer.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Active(ApplicationUser user)
+        public IActionResult Active(ApplicationUser user)
         {
             var userInfo = _db.ApplicationUser.FirstOrDefault(c => c.Id == user.Id);
             if (userInfo == null)
@@ -155,7 +155,7 @@ namespace OnlineShop.Areas.Customer.Controllers
             return View(userInfo);
         }
 
-        public async Task<IActionResult> Delete(string id)
+        public IActionResult Delete(string id)
         {
             var user = _db.ApplicationUser.FirstOrDefault(c => c.Id == id);
             if (user == null)
@@ -166,7 +166,7 @@ namespace OnlineShop.Areas.Customer.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Delete(ApplicationUser user)
+        public IActionResult Delete(ApplicationUser user)
         {
             var userInfo = _db.ApplicationUser.FirstOrDefault(c => c.Id == user.Id);
             if (userInfo == null)

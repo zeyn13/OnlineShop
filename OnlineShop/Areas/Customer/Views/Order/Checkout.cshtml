@@ -67,7 +67,7 @@
                 </div>
                 <div class="col-8">
                     @*<select asp-for="SpecialTagId" asp-items="ViewBag.TagId" class="form-control"></select>*@
-                    <input asp-for="OrderDate" type="text" class="form-control" />
+                    <input asp-for="OrderDate" readonly="readonly" type="text" class="form-control" />
                     <span asp-validation-for="OrderDate" class="text-danger"></span>
                 </div>
 
@@ -93,8 +93,9 @@
             </td>
             <td>@item.Name</td>
             <td>@item.Price</td>
-        </tr>}
-                </tbody>
+        </tr>
+        }
+             </tbody>
             </table>
             <div class="text-right">
                 <h3>Total Price : @products.Sum(c => c.Price)</h3>
