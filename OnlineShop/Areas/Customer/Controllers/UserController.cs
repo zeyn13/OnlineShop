@@ -121,7 +121,7 @@ namespace OnlineShop.Areas.Customer.Controllers
             int rowAffected = _db.SaveChanges();
             if (rowAffected > 0)
             {
-                TempData["save"] = "User has been lockout successfully";
+                TempData["Save"] = "User has been lockout successfully";
                 return RedirectToAction(nameof(Index));
             }
             return View(userInfo);

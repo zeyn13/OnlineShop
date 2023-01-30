@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-
+using OnlineShop.Areas.Admin.Models;
 using OnlineShop.Data;
 
 namespace OnlineShop.Areas.Admin.Controllers
@@ -124,6 +124,9 @@ namespace OnlineShop.Areas.Admin.Controllers
             }
             return View();
         }
+        
+
+
     }
 }
 
