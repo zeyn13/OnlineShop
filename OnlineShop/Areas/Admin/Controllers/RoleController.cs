@@ -14,8 +14,11 @@ namespace OnlineShop.Areas.Admin.Controllers
     public class RoleController : Controller
     {
         RoleManager<IdentityRole> _roleManager;
-        UserManager<IdentityUser> _userManager;
         ApplicationDbContext _db;
+        UserManager<IdentityUser> _userManager;
+       
+        
+
         public RoleController(RoleManager<IdentityRole> roleManager, ApplicationDbContext db, UserManager<IdentityUser> userManager)
         {
             _roleManager = roleManager;
@@ -30,7 +33,7 @@ namespace OnlineShop.Areas.Admin.Controllers
             return View();
         }
 
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
             return View();
         }
@@ -53,9 +56,9 @@ namespace OnlineShop.Areas.Admin.Controllers
                 TempData["save"] = "Role has been saved successfully";
                 return RedirectToAction(nameof(Index));
             }
-
             return View();
         }
+
 
         public async Task<IActionResult> Edit(string id)
         {
@@ -94,6 +97,7 @@ namespace OnlineShop.Areas.Admin.Controllers
             }
             return View();
         }
+
         public async Task<IActionResult> Delete(string id)
         {
             var role = await _roleManager.FindByIdAsync(id);
@@ -125,10 +129,10 @@ namespace OnlineShop.Areas.Admin.Controllers
             return View();
         }
 
-        public IActionResult Assign()
+        public async Task<IActionResult> Assign()
         {
 
-            ViewData["UserId"] = new SelectList(_db.ApplicationUsers.Where(f => f.LockoutEnd < DateTime.Now || f.LockoutEnd == null).ToList(), "Id", "UserName");
+            ViewData["UserId"] = new SelectList(_db.ApplicationUser.Where(f => f.LockoutEnd < DateTime.Now || f.LockoutEnd == null).ToList(), "Id", "UserName");
             ViewData["RoleId"] = new SelectList(_roleManager.Roles.ToList(), "Name", "Name");
             return View();
         }
@@ -136,12 +140,12 @@ namespace OnlineShop.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Assign(RoleUserVm roleUser)
         {
-            var user = _db.ApplicationUsers.FirstOrDefault(c => c.Id == roleUser.UserId);
+            var user = _db.ApplicationUser.FirstOrDefault(c => c.Id == roleUser.UserId);
             var isCheckRoleAssign = await _userManager.IsInRoleAsync(user, roleUser.RoleId);
             if (isCheckRoleAssign)
             {
                 ViewBag.mgs = "This user already assign this role.";
-                ViewData["UserId"] = new SelectList(_db.ApplicationUsers.Where(f => f.LockoutEnd < DateTime.Now || f.LockoutEnd == null).ToList(), "Id", "UserName");
+                ViewData["UserId"] = new SelectList(_db.ApplicationUser.Where(f => f.LockoutEnd < DateTime.Now || f.LockoutEnd == null).ToList(), "Id", "UserName");
                 ViewData["RoleId"] = new SelectList(_roleManager.Roles.ToList(), "Name", "Name");
                 return View();
             }
@@ -158,7 +162,7 @@ namespace OnlineShop.Areas.Admin.Controllers
         {
             var result = from ur in _db.UserRoles
                          join r in _db.Roles on ur.RoleId equals r.Id
-                         join a in _db.ApplicationUsers on ur.UserId equals a.Id
+                         join a in _db.ApplicationUser on ur.UserId equals a.Id
                          select new UserRoleMaping()
                          {
                              UserId = ur.UserId,
@@ -175,5 +179,3 @@ namespace OnlineShop.Areas.Admin.Controllers
 
     }
 }
-
-

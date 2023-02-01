@@ -13,3 +13,4 @@ namespace OnlineShop.Areas.Admin.Models
         public string RoleName { get; set; }
     }
 }
+

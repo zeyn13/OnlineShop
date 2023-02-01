@@ -86,7 +86,7 @@ namespace OnlineShop.Areas.Identity.Pages.Account
                 var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: true);
                 if (result.Succeeded)
                 {
-                    var userInfo = _db.ApplicationUsers.FirstOrDefault(c => c.UserName.ToLower() == Input.Email.ToLower());
+                    var userInfo = _db.ApplicationUser.FirstOrDefault(c => c.UserName.ToLower() == Input.Email.ToLower());
                     var roleInfo = (from ur in _db.UserRoles
                                     join r in _db.Roles on ur.RoleId equals r.Id
                                     where ur.UserId == userInfo.Id
